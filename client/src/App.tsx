@@ -1,7 +1,16 @@
 import React from "react";
+import Calculator from "./components/Calculator";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
-  return <h1 className="text-8xl font-bold">Marchzinsrechner</h1>;
+  return (
+    <div>
+      <Header />
+      <Calculator />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
