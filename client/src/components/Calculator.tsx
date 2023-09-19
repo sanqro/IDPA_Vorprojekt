@@ -1,9 +1,10 @@
+import { parse } from "path";
 import React, { useState } from "react";
 
 function Calculator() {
   const [birthdate, setBirthdate] = useState("");
   const [savingsAmount, setSavingsAmount] = useState("");
-  const [interestRate, setInterestRate] = useState(0); // Hinzugefügtes State für den Zinssatz
+  const [interestRate, setInterestRate] = useState("");
 
   const handleBirthdateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBirthdate(e.target.value);
@@ -14,13 +15,17 @@ function Calculator() {
   };
 
   const handleInterestRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInterestRate(parseFloat(e.target.value));
+    setInterestRate(e.target.value);
   };
 
   const calculateInterest = () => {
     console.log(birthdate);
     console.log(savingsAmount);
     console.log(interestRate);
+    if (!birthdate || savingsAmount === "" || interestRate === "") {
+      alert("Bitte füllen Sie jedes fachgerecht Feld aus.");
+      return;
+    }
   };
 
   return (
@@ -64,7 +69,9 @@ function Calculator() {
           />
         </div>
         <button
-          onClick={calculateInterest}
+          onClick={() => {
+            calculateInterest();
+          }}
           className="bg-blue-500 text-white p-2 rounded-lg w-full"
         >
           Berechnen
