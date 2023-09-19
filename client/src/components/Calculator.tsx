@@ -1,10 +1,10 @@
-import { parse } from "path";
 import React, { useState } from "react";
 
 function Calculator() {
   const [birthdate, setBirthdate] = useState("");
   const [savingsAmount, setSavingsAmount] = useState("");
   const [interestRate, setInterestRate] = useState("");
+  const [finalAmount, setFinalAmount] = useState(Number);
 
   const handleBirthdateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBirthdate(e.target.value);
@@ -30,7 +30,7 @@ function Calculator() {
     const dailyInterest = interest / 360;
     const interestUntilBirthday = dailyInterest * birthdateAsNumber;
     const finalAmount = interest + interestUntilBirthday;
-    alert(`Zinsbetrag: ${finalAmount.toFixed(2)} CHF`);
+    setFinalAmount(finalAmount);
   };
 
   return (
@@ -82,6 +82,16 @@ function Calculator() {
           Berechnen
         </button>
       </div>
+      {finalAmount !== 0 && (
+        <div className="mt-4">
+          <p>Bruttozins: {finalAmount.toFixed(2)} CHF</p>
+          <p>Nettozins nach Verechnungsseuter: {(finalAmount * 0.65).toFixed(2)} CHF</p>
+          <p>Verrechnungssteuer: {(finalAmount * 0.35).toFixed(2)} CHF</p>
+          <p>
+            Endbetrag auf Konto {(finalAmount * 0.65 + parseFloat(savingsAmount)).toFixed(2)} CHF
+          </p>
+        </div>
+      )}
     </div>
   );
 }
