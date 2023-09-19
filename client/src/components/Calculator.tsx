@@ -19,13 +19,18 @@ function Calculator() {
   };
 
   const calculateInterest = () => {
-    console.log(birthdate);
-    console.log(savingsAmount);
-    console.log(interestRate);
     if (!birthdate || savingsAmount === "" || interestRate === "") {
-      alert("Bitte füllen Sie jedes fachgerecht Feld aus.");
+      alert("Bitte füllen Sie jedes Eingabefeld fachgerecht aus!");
       return;
     }
+    const amountAsNumber = parseFloat(savingsAmount);
+    const interestRateAsNumber = parseFloat(interestRate);
+    const birthdateAsNumber = new Date(birthdate).getDate();
+    const interest = (amountAsNumber * interestRateAsNumber) / 100;
+    const dailyInterest = interest / 360;
+    const interestUntilBirthday = dailyInterest * birthdateAsNumber;
+    const finalAmount = interest + interestUntilBirthday;
+    alert(`Zinsbetrag: ${finalAmount.toFixed(2)} CHF`);
   };
 
   return (
