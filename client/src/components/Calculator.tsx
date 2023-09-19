@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function Calculator() {
   const [birthdate, setBirthdate] = useState("");
   const [savingsAmount, setSavingsAmount] = useState("");
+  const [interestRate, setInterestRate] = useState(0); // Hinzugefügtes State für den Zinssatz
 
   const handleBirthdateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBirthdate(e.target.value);
@@ -12,9 +13,14 @@ function Calculator() {
     setSavingsAmount(e.target.value);
   };
 
+  const handleInterestRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInterestRate(parseFloat(e.target.value));
+  };
+
   const calculateInterest = () => {
     console.log(birthdate);
     console.log(savingsAmount);
+    console.log(interestRate);
   };
 
   return (
@@ -42,6 +48,18 @@ function Calculator() {
             id="savingsAmount"
             value={savingsAmount}
             onChange={handleSavingsAmountChange}
+            className="border rounded-lg p-2 w-full"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="interestRate" className="block font-medium text-gray-600">
+            Zinssatz (%):
+          </label>
+          <input
+            type="number"
+            id="interestRate"
+            value={interestRate}
+            onChange={handleInterestRateChange}
             className="border rounded-lg p-2 w-full"
           />
         </div>
