@@ -84,7 +84,7 @@ function Calculator() {
         {finalAmount !== 0 && (
           <div className="mt-4">
             <p>Bruttozins: {finalAmount.toFixed(2)} CHF</p>
-            <p>Nettozins nach Verechnungsseuter: {(finalAmount * 0.65).toFixed(2)} CHF</p>
+            <p>Nettozins nach Verrechnungssteuer: {(finalAmount * 0.65).toFixed(2)} CHF</p>
             <p>Verrechnungssteuer: {(finalAmount * 0.35).toFixed(2)} CHF</p>
             <p>
               Endbetrag auf Konto {(finalAmount * 0.65 + parseFloat(savingsAmount)).toFixed(2)} CHF
